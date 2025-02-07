@@ -17,13 +17,15 @@ Um projeto simples e eficiente para autenticação de usuários, desenvolvido co
   - Prisma com banco de dados relacional
   - Zod para validação de dados
   - Nodemailer para envio de e-mail
+  - Docker
 
 ## Requisitos
+  - Ter o docker instalado
   - Arquivo .env
 ```bash
 Configure o arquivo .env:
 
-DATABASE_URL="mysql://root:senha@localhost:3306/user_jwt"
+DATABASE_URL="mysql://root:senha123rte@db:3306/jwt_user"
 
 PORT=3398
 
@@ -46,13 +48,9 @@ Acesse o diretório do projeto:
 
 cd authenticate_user
 
-Instale as dependências:
+Inicie os containers do Docker:
 
-npm install
-
-Inicie o servidor:
-
-npm run dev
+docker-compose up -d --build
 
 ```
 
