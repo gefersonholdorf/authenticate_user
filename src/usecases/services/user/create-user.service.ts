@@ -1,7 +1,9 @@
+import { mailerConfig } from "../../../config/mailer"
 import { UserEntity } from "../../../domains/user/entities/user.entity"
 import { UserRepository } from "../../../infra/repositories/user/user.repository"
 import { UseCase } from "../../usecase"
 import bcrypt from "bcrypt"
+import nodemailer from "nodemailer"
 
 export interface CreateUserInputDto {
     id ?: number
@@ -37,7 +39,20 @@ export class CreateUserService implements UseCase<CreateUserInputDto, void> {
             createdAt: input.createdAt
         })
 
-        await this.userRepository.create(newUser)
+        try {
+            await this.userRepository.create(newUser)
+
+            const mailer = nodemailer.createTransport(mailerConfig)
+
+            await mailer.sendMail({
+                from: 'cassidy.kessler18@ethereal.email',
+                to: `${input.email}`,
+                subject: 'Cadastro de Usuário',
+                html: `Olá ${input.name}, seja bem vindo ao sistema`
+            })
+        } catch (error) {
+            throw error
+        }
     }
 
 }
