@@ -1,6 +1,6 @@
 import { UserRepository } from "../../../infra/repositories/user/user.repository";
 import { UseCase } from "../../usecase";
-import bcrypt from "bcrypt"
+const bcrypt = require('bcryptjs');
 import jwt from "jsonwebtoken"
 
 export interface AuthenticateInputDto {

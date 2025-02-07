@@ -2,7 +2,7 @@ import { mailerConfig } from "../../../config/mailer"
 import { UserEntity } from "../../../domains/user/entities/user.entity"
 import { UserRepository } from "../../../infra/repositories/user/user.repository"
 import { UseCase } from "../../usecase"
-import bcrypt from "bcrypt"
+const bcrypt = require('bcryptjs');
 import nodemailer from "nodemailer"
 
 export interface CreateUserInputDto {
